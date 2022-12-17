@@ -1,12 +1,31 @@
 import React, {useState} from "react";
 import Icon from './Imgs/icon.png'
+import api from './services/api'
 
 export default () => {
   
+  
   const [input, setInput] = useState('')
 
-  const  handleSearch = () => {
-    alert('Valor do input ' + input)
+  const [cep, setCep] = useState({})
+
+  const  handleSearch =  async() => {
+    if(input === ''){
+      alert('Preencha o campo indicado!')
+      return
+    }
+
+    try{
+        const response = await api.get(`${input}/json`) /* Tipo da requisão que vamos fazer */
+        setCep(response.data)
+        setInput('')
+    } catch{
+        alert('Ops erro ao buscar o CEP!!!')
+        setInput('')
+    }
+
+
+
   }
 
 
@@ -26,14 +45,19 @@ export default () => {
 
         </div>
 
-        <main className="main">
-          <h2>CEP: 9999-9999</h2>
 
-          <span>Rua: Batman muito louco</span>
-          <span>Complemento: algumssss</span>
-          <span>Bairro: Vila Rosa</span>
-          <span>campo grande</span>
+
+        {Object.keys(cep).length > 0 && ( // Para checkar se tem algo 
+          <main className="main">
+          <h2>CEP:  {cep.cep} </h2>
+
+          <span>Logradouro: {cep.logradouro}</span>
+          <span>Complemento: {cep.complemento} </span>
+          <span>Bairro: {cep.bairro} </span>
+          <span>Localidade: {cep.localidade} - {cep.uf} </span>
         </main>
+        )}
+        
 
 
       </div>
