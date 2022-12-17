@@ -1,6 +1,6 @@
 # Buscador-cep
 
-h5>Detalhes a se destacar no projeto</h5>
+<h5>Detalhes a se destacar no projeto</h5>
 
 <ul>
      <li>O Projeto tem o foco em Práticar Display Flex e Responsividade ⌨️</li>
