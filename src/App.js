@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import Icon from './Imgs/icon.png'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default () => {
+  
+  const [input, setInput] = useState('')
+
+  const  handleSearch = () => {
+    alert('Valor do input ' + input)
+  }
+
+
+
+  return(
+    <>
+      <div className="container">
+        <h1 className="title">Buscador de CEP</h1>
+
+        <div className="containerinput">
+          
+          <input type='text' placeholder="Digite seu CEP..." value={input} onChange={(e)=> setInput(e.target.value) } />
+          <button   className="buttonSearch" onClick={handleSearch}><img id="icon-img" src={Icon} style={{width: '30px'}}
+         
+
+          /></button>
+
+        </div>
+
+        <main className="main">
+          <h2>CEP: 9999-9999</h2>
+
+          <span>Rua: Batman muito louco</span>
+          <span>Complemento: algumssss</span>
+          <span>Bairro: Vila Rosa</span>
+          <span>campo grande</span>
+        </main>
+
+
+      </div>
+    </>
+  )
 }
-
-export default App;
